@@ -35,25 +35,38 @@ document.addEventListener("DOMContentLoaded", function () {
               commentBox.classList.add("comment_box");
               comments.forEach((comment) => {
                 const commentpostId = document.createElement("div");
-                commentpostId.textContent = comment.id;
+                commentpostId.classList.add("comment_ID_style");
+                commentpostId.textContent = comment.id + ".";
 
                 const commentEmail = document.createElement("div");
+                commentEmail.classList.add("comment_email_style");
                 commentEmail.textContent = comment.email;
 
                 const commentName = document.createElement("div");
+                commentName.classList.add("comment_name_style");
                 commentName.textContent = comment.name;
 
                 const commentBody = document.createElement("div");
+                commentBody.classList.add("comment_body_style");
                 commentBody.textContent = comment.body;
 
-                const commentContainer = document.createElement("div");
-                commentContainer.classList.add("comment");
-                commentContainer.appendChild(commentpostId);
-                commentContainer.appendChild(commentEmail);
-                commentContainer.appendChild(commentName);
-                commentContainer.appendChild(commentBody);
+                const commentContainer1 = document.createElement("div");
+                commentContainer1.classList.add("comment_container_1");
+                commentContainer1.appendChild(commentpostId);
+                commentContainer1.appendChild(commentName);
 
-                commentBox.appendChild(commentContainer);
+                const commentContainer2 = document.createElement("div");
+                commentContainer2.classList.add("comment_container_2");
+                commentContainer2.appendChild(commentEmail);
+                commentContainer2.appendChild(commentBody);
+
+                const commentBoxsmall = document.createElement("div");
+                commentBoxsmall.classList.add("comment_box_small");
+
+                commentBoxsmall.appendChild(commentContainer1);
+                commentBoxsmall.appendChild(commentContainer2);
+
+                commentBox.appendChild(commentBoxsmall);
               });
               postElement.appendChild(commentBox);
             })
