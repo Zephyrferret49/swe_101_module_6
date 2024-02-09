@@ -15,8 +15,10 @@ document.addEventListener("DOMContentLoaded", function () {
     posts.forEach((post) => {
       const postElement = document.createElement("div");
       postElement.classList.add("content_section");
-      postElement.innerHTML = `<h2>${post.title}</h2>
-        <p class="content_body">${post.body}</p><button type="button" class="comment_button">See Comments</button>`;
+      postElement.innerHTML = `<h2 class="content_head">${post.title}</h2>
+        <p class="content_body">${post.body}
+        <div class="comment_row">Comments: 
+        <button type="button" class="comment_button">Expand</button></div></p>`;
       mainElement.appendChild(postElement);
 
       const commentButton = postElement.querySelector(".comment_button");
