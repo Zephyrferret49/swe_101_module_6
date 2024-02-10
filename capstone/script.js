@@ -7,6 +7,15 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((response) => response.json())
     .then((posts) => {
       displayPosts(posts);
+
+      //   Eventlistener for inputs and filter
+      searchButton.addEventListener("click", function () {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filteredPosts = posts.filter((post) =>
+          post.title.toLowerCase().includes(searchTerm)
+        );
+        displayPosts(filteredPosts);
+      });
     })
     .catch((error) => console.error("Error fetching posts:", error));
 
@@ -31,7 +40,14 @@ document.addEventListener("DOMContentLoaded", function () {
           fetch(
             `https://jsonplaceholder.typicode.com/comments?postId=${postId}`
           )
-            .then((response) => response.json())
+            .then((response) => {
+              // this part checks for network errors. if nothing is found, returns "no response from Network"
+              if (!response.ok) {
+                throw new Error("No response from Network");
+              }
+              return response.json();
+            })
+
             .then((comments) => {
               const commentBox = document.createElement("div");
               commentBox.classList.add("comment_box");
